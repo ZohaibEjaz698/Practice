@@ -1,19 +1,10 @@
-let endDate = "8-09-2024";
-endDate.innerText = document.getElementById("end");
-const inputs = document.querySelectorAll("input");
-
-const clock = () => {
-    const end = new Date(endDate);
-    const now = new Date();
-    const diff = (end - now)/1000;
-    if(diff <0) return;
-    inputs[0].value = Math.floor(diff/3600/24);
-    inputs[1].value = Math.floor(diff/3600) %24;
-    inputs[2].value = Math.floor(diff/60) %60;
-    inputs[3].value = Math.floor(diff) %60;
+const genColor = () => {
+    const code = Math.floor(Math.random() * 16777215);
+    const hex = "#" + code.toString(16);
+    document.getElementById("code").innerText = hex;
+    document.body.style.backgroundColor = hex;
+    navigator.clipboard.writeText = hex;
 }
-clock();
+genColor();
 
-setInterval(() =>{
-    clock();
-},1000);
+document.querySelector("#btn").addEventListener("click",genColor);
